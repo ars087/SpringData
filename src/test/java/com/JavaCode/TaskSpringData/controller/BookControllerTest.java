@@ -37,7 +37,6 @@ class BookControllerTest {
     @MockitoBean
     public BookService bookService;
 
-
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
@@ -47,7 +46,6 @@ class BookControllerTest {
         Book book2 = new Book(2L, "Book Two", "Author Two", 2021);
 
         when(bookService.getAllBooks()).thenReturn(Arrays.asList(book1, book2));
-
 
         mockMvc.perform(get("/api/books")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -62,7 +60,7 @@ class BookControllerTest {
 
     @Test
     void testGetBookById_Success() throws Exception {
-        // Arrange
+
         Book book = new Book(1L, "Book One", "Author One", 2020);
 
         when(bookService.getBookById(any(Long.class))).thenReturn(Optional.of(book));
@@ -79,7 +77,7 @@ class BookControllerTest {
 
     @Test
     void testGetBookById_NotFound() throws Exception {
-        // Arrange
+
         when(bookService.getBookById(1L)).thenReturn(Optional.empty());
 
         mockMvc.perform(get("/api/books/{id}", 1L))
@@ -108,13 +106,11 @@ class BookControllerTest {
 
     @Test
     void testUpdateBook_Success() throws Exception {
-        // Arrange
+
         Book updatedBook = new Book(1L, "Updated Title", "Updated Author", 2023);
 
         when(bookService.updateBook(eq(1L), any(Book.class))).thenReturn(updatedBook);
 
-
-        // Act & Assert
         mockMvc.perform(put("/api/books/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(updatedBook)))
@@ -128,7 +124,7 @@ class BookControllerTest {
 
     @Test
     void testUpdateBook_NotFound() throws Exception {
-        // Arrange
+
         Book bookDetails = new Book(1L, "New Title", "New Author", 2023);
 
         when(bookService.updateBook(eq(1L), any(Book.class))).thenThrow(new RuntimeException("Not found"));
