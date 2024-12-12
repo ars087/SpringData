@@ -1,8 +1,10 @@
 package com.JavaCode.SpringDataTskProjection.controller;
 
 
-import com.JavaCode.SpringDataTskProjection.madel.Department;
+import com.JavaCode.SpringDataTskProjection.model.Department;
 import com.JavaCode.SpringDataTskProjection.service.DepartmentService;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,13 +30,17 @@ public class DepartmentController {
     }
 
     @PostMapping
-    public Department saveDepartment(@RequestBody Department department) {
-        return departmentService.saveDepartment(department);
+    public ResponseEntity<?> saveDepartment(@RequestBody Department department) {
+
+          if (departmentService.saveDepartment(department)){
+            return   ResponseEntity.ok().body("Сохранено");
+          }
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ошибка сохранения");
+
     }
 
     @GetMapping
     public List<?> getAllDepartments() {
-
         return departmentService.getAllDepartments();
     }
 

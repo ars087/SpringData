@@ -1,4 +1,4 @@
-package com.JavaCode.SpringDataTskProjection.madel;
+package com.JavaCode.SpringDataTskProjection.model;
 
 
 import jakarta.persistence.*;
@@ -17,14 +17,15 @@ public class Department {
     private List<Employee> employees;
 
 
-    public Department(String name, List<Employee> employees) {
+    public Department( Long id, String name, List<Employee> employees) {
+
+       this.id =id;
         this.name = name;
         this.employees = employees;
     }
 
 
-    public Department() {
-    }
+    public Department() {   }
 
     public Long getId() {
         return id;

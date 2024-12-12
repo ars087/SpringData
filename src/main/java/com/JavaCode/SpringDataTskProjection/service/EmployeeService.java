@@ -1,8 +1,10 @@
 package com.JavaCode.SpringDataTskProjection.service;
 
-import com.JavaCode.SpringDataTskProjection.madel.Employee;
+import com.JavaCode.SpringDataTskProjection.model.Employee;
 import com.JavaCode.SpringDataTskProjection.projection.EmployeeProjection;
 import com.JavaCode.SpringDataTskProjection.repository.EmployeeRepository;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,8 +20,16 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public Employee saveEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+    public boolean saveEmployee(Employee employee) {
+        try {
+            employeeRepository.save(employee);
+            return true;
+        } catch (DataAccessException e) {
+
+        } catch (Exception e) {
+
+        }
+        return false;
     }
 
     public List<EmployeeProjection> getAllEmployees() {

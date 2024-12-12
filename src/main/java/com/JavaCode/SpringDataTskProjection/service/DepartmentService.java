@@ -1,7 +1,8 @@
 package com.JavaCode.SpringDataTskProjection.service;
 
-import com.JavaCode.SpringDataTskProjection.madel.Department;
+import com.JavaCode.SpringDataTskProjection.model.Department;
 import com.JavaCode.SpringDataTskProjection.repository.DepartmentRepository;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +18,15 @@ public class DepartmentService {
         this.departmentRepository = departmentRepository;
     }
 
-    public Department saveDepartment(Department department) {
-        return departmentRepository.save(department);
+    public boolean saveDepartment(Department department) {
+
+        try {
+            departmentRepository.save(department);
+            return true;
+        } catch (DataAccessException exception) {
+            return false;
+        }
+
     }
 
     public List<Department> getAllDepartments() {

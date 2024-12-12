@@ -1,6 +1,6 @@
 package com.JavaCode.SpringDataTskProjection.controller;
 
-import com.JavaCode.SpringDataTskProjection.madel.Employee;
+import com.JavaCode.SpringDataTskProjection.model.Employee;
 import com.JavaCode.SpringDataTskProjection.projection.EmployeeProjection;
 import com.JavaCode.SpringDataTskProjection.service.EmployeeService;
 import org.springframework.http.HttpStatus;
@@ -30,9 +30,13 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee saveEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<?> saveEmployee(@RequestBody Employee employee) {
 
-        return employeeService.saveEmployee(employee);
+        if (employeeService.saveEmployee(employee)){
+
+            return ResponseEntity.ok().body("Сохранено");
+        }
+        return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ошибка сохранения");
     }
 
     @GetMapping

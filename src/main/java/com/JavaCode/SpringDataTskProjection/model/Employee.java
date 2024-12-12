@@ -1,4 +1,4 @@
-package com.JavaCode.SpringDataTskProjection.madel;
+package com.JavaCode.SpringDataTskProjection.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;

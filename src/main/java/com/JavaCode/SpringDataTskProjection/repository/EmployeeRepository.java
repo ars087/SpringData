@@ -1,6 +1,6 @@
 package com.JavaCode.SpringDataTskProjection.repository;
 
-import com.JavaCode.SpringDataTskProjection.madel.Employee;
+import com.JavaCode.SpringDataTskProjection.model.Employee;
 import com.JavaCode.SpringDataTskProjection.projection.EmployeeProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
