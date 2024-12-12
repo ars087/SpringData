@@ -1,0 +1,12 @@
+databaseChangeLog:
+
+  - include:
+      file: create-department-table.sql
+      relativeToChangelogFile: true
+  - include:
+      file: changeset-creat-employee.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changeset-insert-data.yaml
+      relativeToChangelogFile: true
+
